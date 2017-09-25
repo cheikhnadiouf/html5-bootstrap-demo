@@ -1,0 +1,259 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container">
+    <h3>{{ title_en_US }}</h3>
+    <hr/>
+    <div class="row">
+        <div class="col-lg-8 col-centered">
+            <div class="well">
+                <form method="POST" action="{{ form.action }}" role="form" class="form-horizontal" accept-charset="utf-8">
+
+                    <input id="csrf_token" name="csrf_token" value="{{ csrf_token() }}" type="hidden">
+                    <fieldset>
+                        <legend>Form item</legend>
+
+                        <div class="form-group">
+                            <label for="item_slug" class="col-lg-4 control-label">{{ form.slug.label }}</label>
+                            <div class="col-lg-6">
+                                {{ form.slug (class="form-control") }}
+                                <!-- <input class="form-control" id="item_slug" name="item_slug" required="" value="" type="text"> -->
+                                {% for error in form.errors.slug %} <br/>
+                                    <div class="alert alert-danger" style="display: inline-block">
+                                        {{ error }}
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="item_type" class="col-lg-4 control-label">{{ form.type.label }}</label>
+                            <div class="col-lg-6">
+                                {{ form.type (class="form-control") }}
+                                <!-- <input class="form-control" id="item_type" name="item_type" required="" value="" type="text"> -->
+                                {% for error in form.errors.type %} <br/>
+                                    <div class="alert alert-danger" style="display: inline-block">
+                                        {{ error }}
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="item_title_en_US" class="col-lg-4 control-label">{{ form.title_en_US.label }}</label>
+
+                            <div class="col-lg-6">
+                                {{ form.title_en_US (class="form-control") }}
+                                <!-- <input class="form-control" id="item_title_en_US" name="item_title_en_US" required="" value="" type="text"> -->
+                                {% for error in form.errors.title_en_US %} <br/>
+
+                                    <div class="alert alert-danger" style="display: inline-block">
+                                        {{ error }}
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="item_title_fr_FR" class="col-lg-4 control-label">{{ form.title_fr_FR.label }}</label>
+
+                            <div class="col-lg-6">
+                                {{ form.title_fr_FR (class="form-control") }}
+                                <!-- <input class="form-control" id="item_title_fr_FR" name="item_title_fr_FR" required="" value="" type="text"> -->
+                                {% for error in form.errors.title_fr_FR %} <br/>
+
+                                    <div class="alert alert-danger" style="display: inline-block">
+                                        {{ error }}
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="item_description_en_US" class="col-lg-4 control-label">{{ form.description_en_US.label }}</label>
+
+                            <div class="col-lg-6">
+                                {{ form.description_en_US (cols="35", rows="5", class="form-control") }}
+                                <!-- <textarea class="form-control" id="item_description_en_US" name="item_description_en_US">form.description_en_US.data</textarea> -->
+                                {% for error in form.errors.description_en_US %} <br/>
+
+                                    <div class="alert alert-danger" style="display: inline-block">
+                                        {{ error }}
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="item_description_fr_FR" class="col-lg-4 control-label">{{ form.description_fr_FR.label }}</label>
+
+                            <div class="col-lg-6">
+                                {{ form.description_fr_FR (cols="35", rows="5", class="form-control") }}
+                                <!-- <textarea class="form-control" id="item_description_fr_FR" name="item_description_fr_FR">form.description_fr_FR.data</textarea> -->
+                                {% for error in form.errors.description_fr_FR %} <br/>
+
+                                    <div class="alert alert-danger" style="display: inline-block">
+                                        {{ error }}
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label for="item_amount" class="col-lg-4 control-label">{{ form.amount.label }}</label>
+                            <div class="col-lg-6">
+                                {{ form.amount (class="form-control") }}
+                                <!-- <input class="form-control" id="item_amount" name="item_amount" required="" value="" type="text"> -->
+                                {% for error in form.errors.amount %} <br/>
+                                    <div class="alert alert-danger" style="display: inline-block">
+                                        {{ error }}
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+
+
+                        <!-- ONE-TO-MANY -->
+                        <div class="form-group">
+                            <label for="item_user" class="col-lg-4 control-label">{{ form.user.label }}</label>
+                            <div class="col-lg-6">
+                                <select class="form-control" id="user" name="user" >
+                                    <option value="" >None</option>
+                                    {% for user in users %}
+                                        <option value="{{ user.id }}" {% if form.user.data == user.id %} selected="selected"{% endif %} >{{user.username}}</option>
+                                    {% endfor %}
+                                </select>
+                                {% for error in form.errors.user %} <br/>
+                                    <div class="alert alert-danger" style="display: inline-block">
+                                        {{ error }}
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+
+                        <!-- MANY-TO-MANY RELATIONSHIP -->
+                        <div class="form-group">
+                            <label for="item_sections" class="col-lg-4 control-label">{{ form.sections.label }}</label>
+                            <div class="col-lg-6">
+                               <select class="form-control" id="sections" name="sections" multiple="" >
+                                   <option value="" >None</option>
+                                    {% for section in sections %}
+                                        <option value="{{ section.id }}"
+                                        {% if form.sections.data %}
+                                            {% for section2 in form.sections.data %}
+                                                {% if section.id == section2.id %}
+                                                    selected="selected"
+                                                {% endif %}
+                                            {% endfor %}
+                                        {% endif %}
+                                        >
+                                        {{section.slug}}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+
+
+                        <!-- MANY-TO-MANY RELATIONSHIP -->
+                        <div class="form-group">
+                            <label for="item_assets" class="col-lg-4 control-label">{{ form.assets.label }}</label>
+                            <div class="col-lg-6">
+                               <select class="form-control" id="assets" name="assets" multiple="" >
+                                   <option value="" >None</option>
+                                    {% for asset in assets %}
+                                        <option value="{{ asset.id }}"
+                                        {% if form.assets.data %}
+                                            {% for asset2 in form.assets.data %}
+                                                {% if asset.id == asset2.id %}
+                                                    selected="selected"
+                                                {% endif %}
+                                            {% endfor %}
+                                        {% endif %}
+                                        >
+                                        {{asset.data_file_name}}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+
+
+                        <!-- MANY-TO-MANY RELATIONSHIP -->
+                        <div class="form-group">
+                            <label for="item_orders" class="col-lg-4 control-label">{{ form.orders.label }}</label>
+                            <div class="col-lg-6">
+                               <select class="form-control" id="orders" name="orders" multiple="" >
+                                   <option value="" >None</option>
+                                    {% for order in orders %}
+                                        <option value="{{ order.id }}"
+                                        {% if form.orders.data %}
+                                            {% for order2 in form.orders.data %}
+                                                {% if order.id == order2.id %}
+                                                    selected="selected"
+                                                {% endif %}
+                                            {% endfor %}
+                                        {% endif %}
+                                        >
+                                        {{order.id}}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+       
+
+                        <div class="form-group">
+                            <label for="item_is_active" class="col-lg-4 control-label">{{ form.is_active.label }}</label>
+                            <div class="col-lg-6">
+                                {{ form.is_active (class="form-control") }}
+                                <!-- <input type="checkbox" name="check" value="{{ form.is_active.data }}"> -->
+                                {% for error in form.errors.is_active %} <br/>
+                                    <div class="alert alert-danger" style="display: inline-block">
+                                        {{ error }}
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+
+
+                        <div class="form-group">
+                            <div class="col-lg-4  col-lg-offset-4">
+
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                            </div>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+
+    </div>
+
+
+
+    </div>
+</div>
+
+{% endblock content %}
+
+
+{% block tail_script %}
+<script>
+
+$('textarea').tinymce({
+  forced_root_block : "",
+  selector: 'textarea',
+  cleanup : true,
+  height: 200,
+  menubar: false,
+  images_upload_base_path: '{{url_for('static', filename='uploads/')}}',
+  images_reuse_filename: true,
+  plugins: [
+    'textcolor advlist autolink lists link image charmap print preview anchor',
+    'searchreplace visualblocks code fullscreen',
+    'insertdatetime media table contextmenu paste code'
+  ],
+  toolbar: 'undo redo | insert | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | forecolor | backcolor',
+  content_css: '//www.tinymce.com/css/codepen.min.css'
+});
+
+</script>
+ {% endblock tail_script %}

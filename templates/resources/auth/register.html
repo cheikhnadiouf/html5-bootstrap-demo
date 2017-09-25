@@ -1,0 +1,108 @@
+{% import "bootstrap/wtf.html" as wtf %}
+{% extends "base.html" %}
+{% block title_en_US %}Register - {{ app.config['APP_NAME'] }}{% endblock %}
+{% block content %}
+<div class="container">
+    <h3>{{ title_en_US }}</h3>
+    <hr/>
+<div class="content-section">
+  <div class="col-lg-8 col-md-8">
+    <!--
+    {{ form.hidden_tag() }}
+    {{ wtf.quick_form(form) }}
+    -->
+      <form method="POST" action="{{ url_for('auth_page.register') }}" role="form" class="form-horizontal well" >
+        
+        <input id="csrf_token" name="csrf_token" value="{{ csrf_token() }}" type="hidden">
+        <fieldset>
+            <legend>Register</legend>
+
+            <div class="form-group">
+                <label for="email" class="col-lg-4 control-label">{{ form.email.label }}</label>
+
+                <div class="col-lg-6">
+                    {{ form.email (class="form-control") }}
+                    <!-- <input class="form-control" id="email" name="email" required="" value="" type="text"> -->
+                    {% for error in form.errors.email %} <br/>
+                        <div class="alert alert-danger" style="display: inline-block">
+                            {{ error }}
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="username" class="col-lg-4 control-label">{{ form.username.label }}</label>
+
+                <div class="col-lg-6">
+                    {{ form.username (class="form-control") }}
+                    <!-- <input class="form-control" id="username" name="username" required="" value="" type="text"> -->
+                    {% for error in form.errors.username %} <br/>
+                        <div class="alert alert-danger" style="display: inline-block">
+                            {{ error }}
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="password" class="col-lg-4 control-label">{{ form.password.label }}</label>
+
+                <div class="col-lg-6">
+                    {{ form.password (class="form-control") }}
+                    <!-- <input class="form-control" id="password" name="password" required="" value="" type="password"> -->
+                    {% for error in form.errors.password %} <br/>
+                        <div class="alert alert-danger" style="display: inline-block">
+                            {{ error }}
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="confirm_password" class="col-lg-4 control-label">{{ form.confirm_password.label }}</label>
+
+                <div class="col-lg-6">
+                    {{ form.confirm_password (class="form-control") }}
+                    <!-- <input class="form-control" id="confirm_password" name="confirm_password" required="" value="" type="password"> -->
+                    {% for error in form.errors.confirm_password %} <br/>
+                        <div class="alert alert-danger" style="display: inline-block">
+                            {{ error }}
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-lg-4  col-lg-offset-4">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </div>
+        </fieldset>
+    </form>
+
+  </div>
+
+  <div class="col-lg-4 col-md-4">
+    <div class="row">
+        <div class="col-xs-12 well">
+            <legend><span class="glyphicon glyphicon-info-sign"></span> Rules : </legend>
+            <ul>
+                <li> Rule 1 </li>
+                <li> Rule 2 </li>
+            </ul>
+        </div>
+        <div class="col-xs-12">
+            <legend><span class="glyphicon glyphicon-question-sign"></span> Login fast ? </legend>
+            <ul>
+                <li><a href="{{ url_for('auth_page.login') }}"><span class="glyphicon glyphicon-log-in"></span> click here to sign in with this demo credential </a></li>
+                <li> Login : admin@example.com </li>
+                <li> Password : password123 </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+</div>
+</div>
+{% endblock %}

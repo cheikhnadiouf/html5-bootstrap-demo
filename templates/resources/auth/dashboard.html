@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% block title_en_US %} {{ post.title_en_US }} - {{ app.config['APP_NAME'] }}{% endblock %}
+{% block head_style %}<link href="{{url_for('auth_page.static', filename='styles/dashboard.css')}}" rel="stylesheet">{% endblock %} 
+
+{% block content %}
+<div class="container">
+        <div class="row text-center" >
+            <h1>{{ post.title_en_US }}</h1>
+            {% if current_user.is_authenticated %}
+                    <p><a><i class="fa fa-user"></i>  Hi, {{ current_user.username }}!</a> | {{ post.description_en_US }} | <a href="{{ url_for('auth_page.logout') }}"><span class="glyphicon glyphicon-off"></span> Logout</a></p>
+            {% endif %}
+			<hr/>
+        </div>
+
+
+
+        <div class="row text-center">
+            
+            <div class="dashboard_thumb  col-lg-4 col-md-4 col-sm-4 col-xs-6">
+                <img src="{{ url_for('static', filename='images/thumbnail.jpg') }}" class="img-thumbnail img-responsive">
+            </div>
+
+            <div class="dashboard_thumb  col-lg-4 col-md-4 col-sm-4 col-xs-6">
+                <img src="{{ url_for('static', filename='images/thumbnail.jpg') }}" class="img-thumbnail img-responsive">
+            </div>
+
+            <div class="dashboard_thumb  col-lg-4 col-md-4 col-sm-4 col-xs-6">
+                <img src="{{ url_for('static', filename='images/thumbnail.jpg') }}" class="img-thumbnail img-responsive">
+            </div>
+
+            <div class="dashboard_thumb  col-lg-4 col-md-4 col-sm-4 col-xs-6">
+                <img src="{{ url_for('static', filename='images/thumbnail.jpg') }}" class="img-thumbnail img-responsive">
+            </div>
+
+            <div class="dashboard_thumb  col-lg-4 col-md-4 col-sm-4 col-xs-6">
+                <img src="{{ url_for('static', filename='images/thumbnail.jpg') }}" class="img-thumbnail img-responsive">
+            </div>
+
+            <div class="dashboard_thumb  col-lg-4 col-md-4 col-sm-4 col-xs-6">
+                <img src="{{ url_for('static', filename='images/thumbnail.jpg') }}" class="img-thumbnail img-responsive">
+            </div>
+
+            <div class="dashboard_thumb  col-lg-4 col-md-4 col-sm-4 col-xs-6">
+                <img src="{{ url_for('static', filename='images/thumbnail.jpg') }}" class="img-thumbnail img-responsive">
+            </div>
+
+            <div class="dashboard_thumb  col-lg-4 col-md-4 col-sm-4 col-xs-6">
+                <img src="{{ url_for('static', filename='images/thumbnail.jpg') }}" class="img-thumbnail img-responsive">
+            </div>
+
+            <div class="dashboard_thumb  col-lg-4 col-md-4 col-sm-4 col-xs-6">
+                <img src="{{ url_for('static', filename='images/thumbnail.jpg') }}" class="img-thumbnail img-responsive">
+            </div>
+
+            <div class="dashboard_thumb  col-lg-4 col-md-4 col-sm-4 col-xs-6">
+                <img src="{{ url_for('static', filename='images/thumbnail.jpg') }}" class="img-thumbnail img-responsive">
+            </div>
+
+        </div>
+
+</div>
+{% endblock content %}
+
+
+
+

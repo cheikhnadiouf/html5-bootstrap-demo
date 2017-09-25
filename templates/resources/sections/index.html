@@ -1,0 +1,109 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container">
+    <h4 class="pull-right"><a href="/sections/new"><span class="glyphicon glyphicon-plus"></span> New</a></h4>
+    <h3>Section</h3>    
+    <hr/>
+
+    <div class="text-left">{{ list_sections.query.count() }} results</div>
+
+    <table class="table table-striped table-bordered table-hover">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Slug</th>
+            <th>Parent</th>
+            <th>Children</th>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Users</th>
+            <th>Items</th>
+            <th>Active</th>
+            <th>Updated Date</th>
+            <th>Created Date</th>
+            <th colspan="3">Actions</th>
+        </tr>
+        </thead>
+        {% if list_sections.items %}
+            {% for section in list_sections.items %}
+                <tr>
+                    <td>{{ section.id }}</td>
+                    <td><a href="{{ url_for('sections_page.show', id = section.id) }}" >{{ section.slug }}</a></td>
+
+                    <!-- HIERARCHIC : PARENT -->
+                    <td>
+                        {% if section.parent %}
+                            {{ section.parent.slug}}
+                        {% else %}
+                            No Parent
+                        {% endif %}
+                    </td>
+
+                    <!-- HIERARCHIC: CHILDREN -->
+                    <td> 
+                        {% if section.children %}
+                            {% for child in section.children %}
+                                {{ child.slug }} 
+                            {% endfor %}
+                        {% else %}
+                            No children
+                        {% endif %}
+                    </td>
+
+
+                    <td><a href="{{ url_for('sections_page.show', id = section.id) }}" >{{ section['title_%s' %(g.current_lang)] }}</a></td>
+                    <td>{{ section['description_%s' %(g.current_lang)] }}</td>
+                    <!-- MANY-TO-MANY -->
+                    <td>
+                        {% if section.users %}
+                            {% for user in section.users %}
+                                {{ user.username }}, 
+                            {% endfor %}
+                        {% else %}
+                            No users
+                        {% endif %}
+                    </td>
+                     <!-- MANY-TO-MANY -->
+                    <td>
+                        {% if section.items %}
+                            {% for item in section.items %}
+                                {{ item.title_en_US }}, 
+                            {% endfor %}
+                        {% else %}
+                            No items
+                        {% endif %}
+                    </td>
+                    <td>{{ section.is_active }}</td>
+                    <td>{{ section.updated_at | datetimeformat }}</td>
+                    <td>{{ section.created_at | datetimeformat }}</td>
+                    <td><a href="{{ url_for('sections_page.show', id = section.id) }}" ><i class="glyphicon glyphicon-file"></i> </a></td>
+                    <td><a href="{{ url_for('sections_page.edit', id = section.id) }}" ><i class="glyphicon glyphicon-pencil"></i> </a></td>
+                    <td><a href="{{ url_for('sections_page.destroy', id = section.id) }}" onclick="return confirm('Are you sure you want to delete this item?');"><i class="glyphicon glyphicon-trash"></i> </a></td>
+
+                </tr>
+            {% endfor %}
+        {% else %}
+          <tr style="text-align: center">
+              <td colspan="9">
+            <h4> No sections have been added. </h4>
+            </td>
+         </tr>
+        {% endif %}
+    </table>
+
+    <ul class="pagination">
+        {%- for page in list_sections.iter_pages() %}
+            {% if page %}
+                {% if page != list_sections.page %}
+                    <li><a href="{{ url_for('sections_page.sections', page = page) }}">{{ page }}</a></li>
+                {% else %}
+                    <li class="active"><a href="#"><strong>{{ page }}</strong></a></li>
+                {% endif %}
+            {% else %}
+                <li><span class=ellipsis>…</span></li>
+            {% endif %}
+        {%- endfor %}
+    </ul>
+
+</div>
+{% endblock content %}

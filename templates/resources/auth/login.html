@@ -1,0 +1,70 @@
+{% import "bootstrap/wtf.html" as wtf %}
+{% extends "base.html" %}
+{% block title_en_US %}Login - {{ app.config['APP_NAME'] }}{% endblock %}
+{% block content %}
+<div class="container">
+    <h3>{{ title_en_US }}</h3>
+    <hr/>
+<div class="content-section">
+    
+  
+  <div class="col-lg-8 col-md-8">
+    <!--
+    {{ form.hidden_tag() }}
+    {{ wtf.quick_form(form) }}
+    -->
+        
+      <form method="POST" action="{{ url_for('auth_page.login') }}" role="form" class="form-horizontal well" accept-charset="utf-8">
+
+        <input id="csrf_token" name="csrf_token" value="{{ csrf_token() }}" type="hidden">
+        <fieldset>
+            <legend>Login</legend>
+            <div class="form-group">
+                <label for="email" class="col-lg-4 control-label">{{ form.email.label }}</label>
+
+                <div class="col-lg-6">
+                    {{ form.email (class="form-control") }}
+                    <!-- <input class="form-control" id="email" name="email" required="" value="" type="text"> -->
+                    {% for error in form.errors.email %} <br/>
+                        <div class="alert alert-danger" style="display: inline-block">
+                            {{ error }}
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="password" class="col-lg-4 control-label">{{ form.password.label }}</label>
+
+                <div class="col-lg-6">
+                    {{ form.password (class="form-control") }}
+                    <!-- <input class="form-control" id="password" name="password" required="" value="" type="password"> -->
+                    {% for error in form.errors.password %} <br/>
+                        <div class="alert alert-danger" style="display: inline-block">
+                            {{ error }}
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-lg-4  col-lg-offset-4">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </div>
+        </fieldset>
+    </form>
+
+  </div>
+
+<div class="col-lg-4 col-md-4 well">
+  <legend><span class="glyphicon glyphicon-user"></span> Demo try : </legend>
+  <ul>
+        <li> Login : admin@example.com </li>
+        <li> Password : password123 </li>
+    </ul>
+    </div>
+
+
+</div>
+</div>
+{% endblock %}

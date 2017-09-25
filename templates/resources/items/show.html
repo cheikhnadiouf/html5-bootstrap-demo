@@ -1,0 +1,93 @@
+{% extends "base.html" %}
+{% block title_en_US %} {{ item.id }} - {{ item['title_%s' %(g.current_lang)] }} - {{ app.config['APP_NAME'] }}{% endblock %}
+{% block content %}
+<div class="container">
+    <div class="well well-reverse col-lg-10 col-centered">
+    <h3>{{ item.id }} - {{ item['title_%s' %(g.current_lang)] }}</h3>
+    <h4 class="text-right"><a href="/items"><span class="glyphicon glyphicon-chevron-left"></span> Back</a></h4>
+    
+    <h4 class="btn btn-primary btn-lg"><a href="{{ url_for('orders_page.add_cart', item_id = item.id, quantity=1) }}" ><i class="glyphicon glyphicon-shopping-cart"></i> Add to Cart</a></h4>
+
+    <hr/>
+    
+    <p>{{ item.slug }}</p>
+    <p>{{ item.type }}</p>
+    <p>{{ item['description_%s' %(g.current_lang)] | parse_html}}</p>
+    <p>{{ item.amount }}</p>
+
+    <!-- ONE-TO-MANY -->
+    <p> User :
+        {% if item.user %}
+            {{ item.user.username }}
+        {% else %}
+            No User
+        {% endif %}
+    </p>
+
+    <!-- ONE-TO-MANY -->
+    <p>
+        {% if item.addresses %}
+            {% for address in item.addresses %}
+                {{ address.title_en_US }}
+            {% endfor %}
+        {% else %}
+            None
+        {% endif %}
+    </p>
+
+    <!-- ONE-TO-MANY -->
+    <p>
+        {% if item.events %}
+            {% for event in item.events %}
+                {{ event.type }}-{{ event.id }} 
+            {% endfor %}
+        {% else %}
+            None
+        {% endif %}
+    </p>
+
+    <!-- MANY-TO-MANY -->
+    <p>
+        {% if item.sections %}
+            {% for section in item.sections %}
+                {{ section.slug }}  
+            {% endfor %}
+        {% else %}
+            No sections
+        {% endif %}
+    </p>
+    <!-- MANY-TO-MANY -->
+    <p>
+        {% if item.assets %}
+            {% for asset in item.assets %}
+                {% if asset.asset_type == 'image' %}    
+                    <a href="{{url_for('static', filename='uploads/' + asset.data_file_name)}}">
+                        <img src=" {{url_for('static', filename='uploads/' + asset.data_file_name)}}" width="100" class="img-thumbnail">
+                    </a>
+                {% else %}
+                    <a href="{{url_for('static', filename='uploads/' + asset.data_file_name)}}">
+                        <i class="glyphicon glyphicon-file" style="font-size: 100px;"></i>
+                    </a>
+                {% endif %}
+            {% endfor %}
+        {% else %}
+            No assets
+        {% endif %}
+    </p>
+    <!-- MANY-TO-MANY -->
+    <p>
+        {% if item.orders %}
+            {% for order in item.orders %}
+                {{ order.id }}  
+            {% endfor %}
+        {% else %}
+            No orders
+        {% endif %}
+    </p>
+    <p>{{ item.is_active }}</p>
+    <p>{{ item.updated_at }}</p>
+    <p>{{ item.created_at }}</p>
+    </div>
+</div>
+{% endblock content %}
+

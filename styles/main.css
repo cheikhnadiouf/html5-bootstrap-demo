@@ -1,0 +1,192 @@
+/* Main stylesheet */
+
+/* @section body */
+html {
+  position: relative;
+  min-height: 100%;
+}
+body {
+  /* Padding top by fixed header navbar height */  
+  padding-top: 60px;
+  /* Margin bottom by footer height */
+  margin-bottom: 60px;
+}
+.sticky-footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  margin: 0px;
+  padding: 5px  0px;
+  /* Set the fixed height of the footer here */
+  height: 60px;
+}
+
+/* for col-lg center */
+.col-centered {
+    float: none;
+    margin: 0 auto;
+}
+
+
+.col-centered .img-responsive {
+
+   margin: 0 auto;
+
+}
+
+
+/* @section forms */
+.btn.cancel { margin-left: 0.5rem; }
+.nowrap { white-space: nowrap; }
+
+
+.navbar-brand>img {
+
+   height: 100%;
+   width: auto;
+   margin: 0 auto;
+   min-height: 50px;
+   position: relative;
+   top : -15px;
+   left : -15px;
+
+   /* probably not needed anymore, but doesn't hurt */
+   -o-object-fit: contain;
+   object-fit: contain; 
+
+}
+
+
+.datepicker table {
+    background-color: #fff;
+}
+
+
+.active {
+  color: #FFF !important;
+  background-color: rgba(0, 0, 0, 0.2) !important;
+}
+
+
+
+/* --------------------------------------------- */
+/* make sidebar nav vertical */ 
+/* --------------------------------------------- */
+
+/* The side navigation menu */
+.sidenav {
+    height: 100%; /* 100% Full-height */
+    position: fixed; /* Stay in place */
+    z-index: 2001; /* Stay on top */
+    left: 0;
+    padding-top: 0px; /* Place content 60px from the top */
+    transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
+}
+
+
+#body_sidebar {
+    width: 60px;    /* 0 width - change this with JavaScript */
+}
+
+/* Style page content - use this if you want to push the page content to the right when you open the side navigation */
+#body_content {
+    transition: margin-left .5s;
+}
+
+
+#body_sidebar + #body_content {
+  margin-left: 50px;
+}
+
+.text_sidebar {
+  display : none;
+  margin-left : 10px;
+}
+
+
+/* On using dropdown menu (To right shift popuped) */
+.sidenav .nav > li > .dropdown-menu {
+  position : absolute;
+  z-index: 3;
+  margin-top: -50px;
+  margin-left: 60px;
+}
+
+
+/* --------------------------------------------- */
+
+.show_aside > #body_sidebar {
+  width: 160px; /* 0 width - change this with JavaScript */
+}
+
+.show_aside > #body_sidebar + #body_content {
+  margin-left: 160px;
+}
+
+
+.show_aside > .sidenav .glyphicon-triangle-right::before {
+    content: "\e251" ;
+}
+
+.show_aside > .sidenav .nav > li > .dropdown-menu {
+  margin-left: 160px;
+}
+
+.show_aside > .sidenav .nav > li {
+  width: 160px;
+}
+
+
+
+/* --------------------------------------------- */
+
+/* The navigation menu links */
+.sidenav .navbar-brand {
+  width: 100%;
+}
+
+.sidenav .nav > li {
+  float: none;  /* Cancel default li float: left */
+}
+
+/*
+.sidenav .nav > li > a > span:first-child {
+  text-align: left;
+  margin-right: 5px;
+}
+
+
+.sidenav + .container {
+  padding-left: 160px;
+}
+*/
+
+
+/* --------------------------------------------- */
+
+/* Shopping cart badge */
+.badge {
+  padding-left: 9px;
+  padding-right: 9px;
+  -webkit-border-radius: 9px;
+  -moz-border-radius: 9px;
+  border-radius: 9px;
+}
+
+#cart-badge {
+    font-size: 14px;
+    background: #696969;
+    color: #fff;
+    padding: 0 5px;
+    vertical-align: top;
+    margin-left: -6px;
+    margin-top: -6px;
+}
+
+
+/* --------------------------------------------- */
+
+
+
+/* Your customizations here */
+

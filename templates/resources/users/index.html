@@ -1,0 +1,177 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container">
+    <h3>User</h3>
+    <hr/>
+
+    <div class="text-left">{{ list_users.query.count() }} results</div>
+    <table class="table table-striped table-bordered table-hover">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Email</th>
+            <th>User name</th>
+            <th>Assets</th>
+            <th>Items</th>
+            <th>Addresses</th>
+            <th>Events</th>
+            <th>Orders</th>
+            <th>Credit cards</th>
+            <th>Payments</th>
+            <th>In addresses</th>
+            <th>In events</th>
+            <th>Sections</th>
+            <th>Locale</th>
+            <th>Timezone</th>
+            <th>Active</th>
+            <th>Updated Date</th>
+            <th>Created Date</th>
+            <th colspan="3">Actions</th>
+            
+        </tr>
+        </thead>
+        {% if list_users.items %}
+            {% for user in list_users.items %}
+                <tr>
+                    <td>{{ user.id }}</td>
+                    <td><a href="{{ url_for('users_page.show', id = user.id) }}" >{{ user.email }}</a></td>
+                    <td>{{ user.username }}</td>
+                    <!-- ONE-TO-MANY -->
+                    <td>
+                        {% if user.assets %}
+                            {% for asset in user.assets %}
+                                {% if asset.asset_type == 'image' %}    
+                                    <img src=" {{url_for('static', filename='uploads/' + asset.data_file_name)}}" width="60" class="img-thumbnail">
+                                {% else %}
+                                    <i class="glyphicon glyphicon-file" style="font-size: 60px;"></i>
+                                {% endif %}
+                            {% endfor %}
+                        {% else %}
+                            None
+                        {% endif %}
+                    </td>
+                    <!-- ONE-TO-MANY -->
+                    <td>
+                        {% if user.items %}
+                            {% for item in user.items %}
+                                {{ item.slug }} 
+                            {% endfor %}
+                        {% else %}
+                            None
+                        {% endif %}
+                    </td>
+                    <!-- ONE-TO-MANY -->
+                    <td>
+                        {% if user.addresses %}
+                            {% for address in user.addresses %}
+                                {{ address.title_en_US }} 
+                            {% endfor %}
+                        {% else %}
+                            None
+                        {% endif %}
+                    </td>
+                    <!-- ONE-TO-MANY -->
+                    <td>
+                        {% if user.events %}
+                            {% for event in user.events %}
+                                {{ event.title_en_US }} 
+                            {% endfor %}
+                        {% else %}
+                            None
+                        {% endif %}
+                    </td>
+                    <!-- ONE-TO-MANY -->
+                    <td>
+                        {% if user.orders %}
+                            {% for order in user.orders %}
+                                {{ order.id }} 
+                            {% endfor %}
+                        {% else %}
+                            None
+                        {% endif %}
+                    </td>
+                    <!-- ONE-TO-MANY -->
+                    <td>
+                        {% if user.creditcards %}
+                            {% for creditcard in user.creditcards %}
+                                {{ creditcard.id }}
+                            {% endfor %}
+                        {% else %}
+                            None
+                        {% endif %}
+                    </td>
+                    <!-- ONE-TO-MANY -->
+                    <td>
+                        {% if user.payments %}
+                            {% for payment in user.payments %}
+                                {{ payment.id }}
+                            {% endfor %}
+                        {% else %}
+                            None
+                        {% endif %}
+                    </td>
+                    <!-- MANY-TO-MANY -->
+                    <td>
+                        {% if user.in_addresses %}
+                            {% for in_address in user.in_addresses %}
+                                {{ in_address.title_en_US }},
+                            {% endfor %}
+                        {% else %}
+                            No in_address
+                        {% endif %}
+                    </td>
+                    <!-- MANY-TO-MANY -->
+                    <td>
+                        {% if user.in_events %}
+                            {% for in_event in user.in_events %}
+                                {{ in_event.title_en_US }}, 
+                            {% endfor %}
+                        {% else %}
+                            No in_events
+                        {% endif %}
+                    </td>
+                    <!-- MANY-TO-MANY -->
+                    <td>
+                        {% if user.sections %}
+                            {% for section in user.sections %}
+                                {{ section.title_en_US }}, 
+                            {% endfor %}
+                        {% else %}
+                            No sections
+                        {% endif %}
+                    </td>
+                    <td>{{ user.locale }}</td>
+                    <td>{{ user.timezone }}</td>
+                    <td>{{ user.is_active }}</td>
+                    <td>{{ user.updated_at | datetimeformat }}</td>
+                    <td>{{ user.created_at | datetimeformat }}</td>
+                    <td><a href="{{ url_for('users_page.show', id = user.id) }}" ><i class="glyphicon glyphicon-file"></i> </a></td>
+                    <td><a href="{{ url_for('users_page.edit', id = user.id) }}" ><i class="glyphicon glyphicon-pencil"></i> </a></td>
+                    <td><a href="{{ url_for('users_page.destroy', id = user.id) }}" onclick="return confirm('Are you sure you want to delete this item?');"><i class="glyphicon glyphicon-trash"></i> </a></td>
+
+                </tr>
+            {% endfor %}
+         {% else %}
+          <tr style="text-align: center">
+              <td colspan="11">
+            <h4> No users have been added. </h4>
+            </td>
+         </tr>
+        {% endif %}
+    </table>
+
+    <ul class="pagination">
+        {%- for page in list_users.iter_pages() %}
+            {% if page %}
+                {% if page != list_users.page %}
+                    <li><a href="{{ url_for('users_page.users', page = page) }}">{{ page }}</a></li>
+                {% else %}
+                    <li class="active"><a href="#"><strong>{{ page }}</strong></a></li>
+                {% endif %}
+            {% else %}
+                <li><span class=ellipsis>…</span></li>
+            {% endif %}
+        {%- endfor %}
+    </ul>
+</div>
+{% endblock content %}

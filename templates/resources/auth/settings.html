@@ -1,0 +1,95 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container">
+    <h3>{{ title_en_US }}</h3>
+    <hr/>
+    <div class="row">
+        <div class="col-lg-8 col-centered">
+            <div class="well">
+                <form method="POST" action="{{ form.action }}" role="form" class="form-horizontal" accept-charset="utf-8" >
+                   
+                    <input id="csrf_token" name="csrf_token" value="{{ csrf_token() }}" type="hidden">
+                    <fieldset>
+                        <legend>Settings</legend>
+                        <div class="form-group">
+                            <label for="user_email" class="col-lg-4 control-label">{{ form.email.label }}</label>
+
+                            <div class="col-lg-6">
+                                {{ form.email (class="form-control") }}
+                                <!-- <input class="form-control" id="user_email" name="user_email" required="" value="" type="text"> -->
+                                {% for error in form.errors.email %} <br/>
+                                    <div class="alert alert-danger" style="display: inline-block">
+                                        {{ error }}
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="user_username" class="col-lg-4 control-label">{{ form.username.label }}</label>
+
+                            <div class="col-lg-6">
+                                {{ form.username (class="form-control") }}
+                                <!-- <input class="form-control" id="user_username" name="user_username" required="" value="" type="text"> -->
+                                {% for error in form.errors.username %} <br/>
+                                    <div class="alert alert-danger" style="display: inline-block">
+                                        {{ error }}
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+
+
+                        <!-- MANY-TO-MANY RELATIONSHIP -->
+                        <div class="form-group">
+                            <label for="user_sections" class="col-lg-4 control-label">{{ form.sections.label }}</label>
+                            <div class="col-lg-6">
+                                <select class="form-control" id="sections" name="sections" multiple="" >
+                                    <option value="" >None</option>
+                                    {% for section in sections %}
+                                        <option value="{{ section.id }}"
+                                        {% if form.sections.data %}
+                                            {% for section2 in form.sections.data %}
+                                                {% if section.id == section2.id %}
+                                                    selected="selected"
+                                                {% endif %}
+                                            {% endfor %}
+                                        {% endif %}
+                                        >
+                                        {{section.title_en_US}}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label for="user_is_active" class="col-lg-4 control-label">{{ form.is_active.label }}</label>
+                            <div class="col-lg-6">
+                                {{ form.is_active (class="form-control") }}
+                                <!-- <input type="checkbox" name="check" value="{{ form.is_active.data }}"> -->
+                                {% for error in form.errors.is_active %} <br/>
+                                    <div class="alert alert-danger" style="display: inline-block">
+                                        {{ error }}
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-lg-4  col-lg-offset-4">
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                            </div>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+
+    </div>
+
+
+
+    </div>
+</div>
+{% endblock content %}

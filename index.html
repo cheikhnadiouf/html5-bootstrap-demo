@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" />
+    <title>Bootstrap skeleton - WEB APP DEMO</title>
+    <link rel="shortcut icon" href="images/favicon.ico">
+    <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="http://netdna.bootstrapcdn.com/bootswatch/3.3.2/slate/bootstrap.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker3.min.css" />
+    <link href="styles/main.css" rel="stylesheet" />
+    <link href="styles/home.css" rel="stylesheet">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/js/bootstrap-datepicker.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/4.5.6/tinymce.min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/tinymce/4.5.6/jquery.tinymce.min.js"></script>
+
+</head>
+
+<body>
+    <!-- pull in navbar -->
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+                <a class="navbar-brand" href="/">
+                <img class="img-responsive" src="images/logo-systemaker-white.png" alt="logo-brand"  align="left">
+				Bootstrap skeleton
+            </a>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li><a class="" href="./index.html"><span class="glyphicon glyphicon-home"></span> Pages</a></li>
+                    <li><a class="" href="/sections"><span class="glyphicon glyphicon-folder-open"></span> Sections</a></li>
+
+                    <li class="btn-group dropdown">
+                        <a class="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <span class="glyphicon glyphicon-file"></span> Products <b class="caret"></b>
+                    </a>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                            <li><a class="" href="/items"><span class="glyphicon glyphicon-file"></span> Items</a></li>
+                            <li><a class="" href="/assets"><span class="glyphicon glyphicon-picture"></span> Assets</a></li>
+                            <li><a class="" href="/events"><span class="glyphicon glyphicon-time"></span> Events</a></li>
+                            <li><a class="" href="/addresses"><span class="glyphicon glyphicon-map-marker"></span> Addresses</a></li>
+                        </ul>
+                    </li>
+                    <li class="btn-group dropdown">
+                        <a class="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <span class="glyphicon glyphicon-shopping-cart"></span> 
+                        
+                        Orders <b class="caret"></b>
+                    </a>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                            <li><a class="" href="/orders"><span class="glyphicon glyphicon-shopping-cart"></span> Orders</a></li>
+                            <li><a class="" href="/payments"><span class="glyphicon glyphicon-usd"></span> Payments</a></li>
+                            <li><a class="" href="/creditcards"><span class="glyphicon glyphicon-credit-card"></span> Credit cards</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="btn-group dropdown">
+                        <a class="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <span class="glyphicon glyphicon-envelope"></span> Messages <b class="caret"></b>
+                    </a>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                            <li><a class="" href="./contact.html"><span class="glyphicon glyphicon-envelope"></span> Emailing contact</a></li>
+                            <li><a class="" href="/flash"><span class="glyphicon glyphicon-flash"></span> Flash messages</a></li>
+                            <li><a class="" href="/maintenance"><span class="glyphicon glyphicon-picture"></span> Maintenance / Coming-soon</a></li>
+                            <li><a class="" href="/404"><span class="glyphicon glyphicon-alert"></span> Error pages</a></li>
+                        </ul>
+                    </li>
+
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+
+                    <li class="btn-group dropdown">
+                        <a class="dropdown-toggle " data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span class="glyphicon glyphicon-user"></span> Users <b class="caret"></b>                            
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
+
+                            <li class="text-center"> Public access </li>
+                            <hr>
+                            <li><a class="" href="/users"><span class="glyphicon glyphicon-user"></span> Users</a></li>
+                            <li><a href="/auth/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                            <li><a href="/auth/register"><span class="glyphicon glyphicon-lock"></span> Register</a></li>
+                            <hr>
+                            <li class="text-center"> Private access </li>
+                            <hr>
+
+
+
+                            <li><a class="" href="/auth/dashboard"><span class="glyphicon glyphicon-dashboard"></span> Dashboard</a></li>
+                            <li><a class="" href="/auth/profile"><span class="glyphicon glyphicon-user"></span> Profile</a></li>
+                            <li><a class="" href="/auth/settings"><span class="glyphicon glyphicon-cog"></span> Settings</a></li>
+                            <li><a class="" href="/users"><span class="glyphicon glyphicon-folder-open"></span> Users</a></li>
+                            <li><a class="" href="/auth/logout"><span class="glyphicon glyphicon-off"></span> Logout</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="btn-group dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      <span class="glyphicon glyphicon-globe"></span> Lang : <img height="24px" width="24px" src="images/flags/fr_FR.png" alt="icon" > fr <b class="caret"></b>
+                    </a>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                            <hr>
+                            <li class="text-center">Selected : fr_FR </li>
+                            <hr>
+                            <li><a href="?lang=en_US" class="btn dropdown-item"><img height="32px" width="32px" src="images/flags/en_US.png" alt="icon"> English</a></li>
+                            <li><a href="?lang=fr_FR" class="btn dropdown-item"><img height="32px" width="32px" src="images/flags/fr_FR.png" alt="icon"> French</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <li class="btn-group dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                         <span class="glyphicon glyphicon-adjust"></span> Themes UI <b class="caret"></b>
+                        </a>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                                <hr>
+                                <li class="text-center">Selected : slate</li>
+                                <hr>
+                                <li><a href="?theme=slate" class="btn dropdown-item">DARK : slate</a></li>
+                                <li><a href="?theme=spacelab" class="btn dropdown-item">LIGHT : spacelab</a></li>
+                                <li><a href="?theme=cerulean" class="btn dropdown-item">COLOR : cerulean</a></li>
+                                <li><a href="?theme=default" class="btn dropdown-item">FLAT : default</a></li>
+                            </ul>
+                        </li>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="container-fluid" id="maincontent">
+
+        <div id="body_content" class="row">
+            <!-- page-level feedback notices -->
+            <br/>
+			<!-- flash messages should be here -->
+			<!--
+			<div class="container alert alert-success">
+                <span class="glyphicon glyphicon-flash"></span> <i class="icon-info-sign"></i>&nbsp;
+                <a class="close" data-dismiss="alert">×</a>
+                Flash success: Message notification service
+            </div>
+        
+            <div class="container alert alert-info">
+                <span class="glyphicon glyphicon-flash"></span> <i class="icon-info-sign"></i>&nbsp;
+                <a class="close" data-dismiss="alert">×</a>
+                Flash info : Message notification service
+            </div>
+        
+            <div class="container alert alert-warning">
+                <span class="glyphicon glyphicon-flash"></span> <i class="icon-info-sign"></i>&nbsp;
+                <a class="close" data-dismiss="alert">×</a>
+                Flash warning : Message notification service
+            </div>
+        
+            <div class="container alert alert-danger">
+                <span class="glyphicon glyphicon-flash"></span> <i class="icon-info-sign"></i>&nbsp;
+                <a class="close" data-dismiss="alert">×</a>
+                Flash error: Message notification service
+            </div>			
+			-->
+			
+			<!-- Start Dynamic content from template pages-->
+            <div class="container-fluid intro-header">
+                <div class="row">
+                    <div class="col-lg-12 col-centered intro-message">
+                        <h1>Bootstrap skeleton</h1>
+                        <hr class="intro-divider">
+                        <h3>For quick getting start</h3>
+                        <!--           
+						<img class="img-responsive" width="500px" src="images/logo-systemaker-black.png" alt="logo-icon" >
+						-->
+                    </div>
+                </div>
+            </div>
+			<!-- / End Dynamic content from template pages -->
+
+        </div>
+    </div>
+    <!-- /container -->
+    <footer class="sticky-footer navbar navbar-default">
+        <div id="footer" class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12">
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <ul class="list-inline text-right panel">
+                        <li><a href="/home"><span class="glyphicon glyphicon-home"></span> Home</a></li>
+                        <li class="footer-menu-divider">|</li>
+
+                        <li><a href="/auth/register"><span class="glyphicon glyphicon-lock"></span> Register</a></li>
+                        <li class="footer-menu-divider">|</li>
+                        <li><a href="/auth/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+
+                    </ul>
+                    <p class="text-center text-muted small">Copyright © 2017 Systemaker.com - All Rights Reserved</p>
+                </div>
+            </div>
+
+        </div>
+        <!-- /footer -->
+    </footer>
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>-->
+    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/moment.min.js"></script>
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key="></script>
+    <script src="https://cdn.jsdelivr.net/gmap3/7.2.0/gmap3.min.js"></script>
+    <script src="scripts/main.js"></script>
+
+    <!-- defer-capable JS block -->
+
+</body>
+
+</html>
